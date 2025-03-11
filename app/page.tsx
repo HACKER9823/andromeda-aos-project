@@ -43,24 +43,18 @@ const Page = () => {
     return (
         <Center minH="100vh">
             <VStack spacing={4} w="full" maxW="500px">
-                <Image src="/logo.png" w='6rem' />
-                <Text fontSize="3xl" fontWeight='bold'>Andromeda Next.js Starter Template</Text>
+                <Image src="logo.webp" w='6rem' />
                 <Text>Click button to connect <b>Andromeda Devnet</b>.</Text>
                 <Text fontWeight='light' mb='4'>
-                    Learn more about Andromeda&nbsp;
-                    <Link isExternal href="https://docs.andromedaprotocol.io" color='blue' textDecoration="underline">
-                        here
-                    </Link>
+                    
                 </Text>
 
                 <ConnectWallet />
 
-                {/* Add Project Button */}
                 <Button mt={6} colorScheme="blue" onClick={handleAddProject}>
                     Add Project
                 </Button>
 
-                {/* Project Input Form (Only visible when adding) */}
                 {isAdding && (
                     <Box p={4} border="1px solid gray" borderRadius="md" w="full">
                         <Text fontSize="lg" fontWeight="medium">Enter Project Details</Text>
