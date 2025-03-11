@@ -83,7 +83,14 @@ const Page = () => {
     <Box bg={bgColor} minH="100vh" py={10}>
       <Container maxW="container.lg">
         <VStack spacing={8} align="center" mb={10}>
-          <Image src="logo.webp" w="8rem" alt="Andromeda Logo" />
+        <Box position="absolute" top="1rem" left="1rem">
+  <Image 
+    src="logo.webp" 
+    w="8rem" 
+    borderRadius="full"  // Makes the image circular
+    alt="Andromeda Logo"
+  />
+</Box>
           <Heading as="h1" size="xl" textAlign="center">
           AndroFund 
           </Heading>
