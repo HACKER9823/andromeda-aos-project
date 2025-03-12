@@ -27,41 +27,48 @@ import {
   LinkBox,
   LinkOverlay,
   Badge,
-  Spacer
+  Spacer,
+  IconButton,
+  useToast,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
+import { FaThumbsUp } from "react-icons/fa";
 
 interface Project {
   name: string;
   githubLink: string;
   description: string;
   keplerAddress: string;
+  likes: number; // Add likes to the Project interface
 }
 
 const Page = () => {
-  // Hardcoded initial projects
+  // Hardcoded initial projects with likes
   const initialProjects: Project[] = [
     {
       name: "Token-Launchpad",
       githubLink: "https://github.com/lalitcap23/token-lauchpad.git",
       description: "An innovative platform for creating and launching custom tokens on the Solana blockchain. This project simplifies the token creation process with an intuitive interface, automated smart contract deployment, and built-in liquidity management. Designed with security and scalability in mind, Token-Launchpad enables developers and entrepreneurs to bring their token ideas to market without deep blockchain knowledge.",
-      keplerAddress: "kepler16z9qn4pq8xmy7hq2qzr4yne5mglgvr7jkl29qnz"
+      keplerAddress: "kepler16z9qn4pq8xmy7hq2qzr4yne5mglgvr7jkl29qnz",
+      likes: 2, // Initial likes
     },
     {
       name: "Auto-Git",
       githubLink: "https://github.com/lalitcap23/Auto-git.git",
       description: "A powerful npm package that streamlines and automates Git workflows for developers. Auto-Git handles repetitive tasks like branch management, commit formatting, and merge processes through customizable templates and intelligent commands. It enforces team conventions, integrates with CI/CD pipelines, and provides detailed workflow analytics. Perfect for teams looking to standardize their Git practices and increase development efficiency.",
-      keplerAddress: "kepler16y2m8vq7xtr9j4zp3f5eq8a2wnm7dlk46xsf"
-    }
+      keplerAddress: "kepler16y2m8vq7xtr9j4zp3f5eq8a2wnm7dlk46xsf",
+      likes: 3, // Initial likes
+    },
   ];
-  
+
   const [projects, setProjects] = useState<Project[]>(initialProjects);
   const [isAdding, setIsAdding] = useState(false);
   const [projectName, setProjectName] = useState("");
   const [githubLink, setGithubLink] = useState("");
   const [description, setDescription] = useState("");
   const [keplerAddress, setKeplerAddress] = useState("");
-  
+  const toast = useToast();
+
   const bgColor = useColorModeValue("gray.50", "gray.900");
   const cardBgColor = useColorModeValue("white", "gray.800");
   const borderColor = useColorModeValue("gray.200", "gray.700");
@@ -87,6 +94,7 @@ const Page = () => {
         githubLink,
         description,
         keplerAddress,
+        likes: 0, // New projects start with 0 likes
       };
       setProjects([...projects, newProject]);
       setProjectName("");
@@ -94,8 +102,34 @@ const Page = () => {
       setDescription("");
       setKeplerAddress("");
       setIsAdding(false);
+      toast({
+        title: "Project Submitted",
+        description: "Your project has been successfully submitted.",
+        status: "success",
+        duration: 5000,
+        isClosable: true,
+      });
+    } else {
+      toast({
+        title: "Error",
+        description: "Please fill in all fields correctly.",
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+      });
     }
   };
+
+  const handleLikeProject = (index: number) => {
+    const updatedProjects = [...projects];
+    updatedProjects[index].likes += 1;
+    setProjects(updatedProjects);
+  };
+
+  // Find the most liked project
+  const mostLikedProject = projects.reduce((prev, current) =>
+    prev.likes > current.likes ? prev : current
+  );
 
   return (
     <Box minH="100vh" bg={bgColor}>
@@ -117,7 +151,8 @@ const Page = () => {
             <Image src="logo.webp" h="2.5rem" alt="Andromeda Logo" />
             <Divider orientation="vertical" h="24px" mx={4} />
             <Heading as="h1" size="md" letterSpacing="tight">
-            AndroFund            </Heading>
+              AndroFund
+            </Heading>
           </Flex>
           <Spacer />
           <ConnectWallet />
@@ -266,6 +301,20 @@ const Page = () => {
           </Card>
         )}
 
+        {/* Most Liked Project Section */}
+        <Box mb={8} p={6} bg="blue.50" borderRadius="lg" border="1px" borderColor="blue.200">
+          <Heading size="md" mb={4}>
+            🏆 Most Liked Project
+          </Heading>
+          <Text fontSize="lg" fontWeight="bold" color="blue.600">
+            {mostLikedProject.name} - {mostLikedProject.likes} Likes
+          </Text>
+          <Text fontSize="sm" color="gray.600">
+            This project is eligible for an extra $1000 grant due to its popularity in the community!
+          </Text>
+        </Box>
+
+        {/* Projects Grid */}
         <Grid templateColumns={{base: "1fr", md: "repeat(2, 1fr)", lg: "repeat(3, 1fr)"}} gap={6}>
           {projects.map((project, index) => (
             <Card 
@@ -315,9 +364,21 @@ const Page = () => {
                 </Box>
               </CardBody>
               <CardFooter pt={0} borderTop="1px" borderColor="gray.100">
-                <Button size="sm" colorScheme="blue" variant="ghost" width="full">
-                  Support Project
-                </Button>
+                <HStack spacing={4} w="full">
+                  <Button size="sm" colorScheme="blue" variant="ghost" width="full">
+                    Support Project
+                  </Button>
+                  <IconButton
+                    aria-label="Like project"
+                    icon={<FaThumbsUp />}
+                    onClick={() => handleLikeProject(index)}
+                    colorScheme="blue"
+                    variant="outline"
+                  />
+                  <Text fontSize="sm" color="gray.600">
+                    {project.likes} Likes
+                  </Text>
+                </HStack>
               </CardFooter>
             </Card>
           ))}
