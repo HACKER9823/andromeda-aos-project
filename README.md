@@ -1,58 +1,132 @@
-<p>&nbsp;</p>
-<p align="center">
-<img src="https://github.com/andromedaprotocol/andromeda-nextjs-application-starter/blob/main/public/Andromeda-Logo.png" width=1000>
-</p>
+## **Project Name: AndroFund**  
 
-# About
-The Andromeda Next.js Application Starter is a base setup for developers to start building without having to worry about the prerequisites. Containing all the key parts needed, it allows you to set up in minutes and start working on your builds. The starter contains the following setups:
-- Keplr integration
-- Andromeda Client (Devnet)
-- GraphQL integration
-- Contract execution hooks 
+**AndroFund** is a **grants platform on the Andromeda blockchain** that enables funding for open-source projects using **ANDR tokens** and **Kepler Wallet** for secure transactions.  
 
-Using this as a starting template, any developer can create their own nextjs application with custom embeddables that suit their needs.
+I'm a **Web3 and Web2 developer** building innovative decentralized solutions. 
 
-**Notes**:
-- It mainly uses Chakra UI, but developers can install any styling library, such as Tailwind, for example.
-- This setup is currently using our Devnet (Testnet for Devs). If you encounter any issues connecting to the GraphQL or chain, please contact us for support.
+## **Project Description**  
 
- This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app). 
+**AndroFund** is a **grants platform** built on the **Andromeda blockchain** that enables open-source developers to secure funding for their projects. Anyone can **submit a project**, and community members can **fund projects directly** using **ANDR tokens** via **Kepler Wallet**.  
 
-## Getting Started
+Users can **like projects**, and the most popular ones become **eligible for additional funding** based on community support. To maintain quality, **a spam detection model** filters out duplicate or low-quality submissions.  
 
-First, run the development server:
+By connecting your wallet, you can **submit projects, support innovative ideas, and help shape the future of decentralized technology**. 🚀
+## **Vision Statement**  
 
-```bash
-npm i
-# then 
-npm run dev
-# or
-yarn dev
+**AndroFund** is designed to **democratize open-source funding** by providing a **transparent, community-driven grants platform** on the **Andromeda blockchain**. Developers can **secure funding directly** through **ANDR tokens**, while the **Kepler Wallet** ensures safe and seamless transactions.  
+
+The **platform rewards community engagement**, where the most-liked projects get **additional funding opportunities**. A **spam detection model** maintains quality by filtering out duplicate or low-value submissions.  
+
+With a **simple and intuitive UI**, anyone—whether a developer or supporter—can easily navigate the platform, submit projects, or contribute to promising ideas. By making funding **accessible and efficient**, AndroFund helps grow the **Andromeda ecosystem**, fostering **innovation and decentralization**. 🚀
+## **Software Development Plan**  
+
+### **1. ADO Smart Contract Development**  
+- Develop an **Andromeda Decentralized Object (ADO)** to manage **crowdfunding and staking**.  
+- Key variables:  
+  - `projectName`, `githubLink`, `description`, `keplerAddress`, `likes`, `fundsRaised`, `stakedAmount`.  
+- Essential functions:  
+  - `submitProject()`: Developers submit projects for funding.  
+  - `fundProject()`: Users contribute **ANDR tokens** to projects.  
+  - `stakeTokens()`: Users stake ANDR tokens to show commitment and boost project credibility.  
+  - `likeProject()`: Users like projects to increase visibility.  
+  - `getTopProjects()`: Fetches the most funded and liked projects.  
+  - `withdrawFunds()`: Project owners withdraw raised funds based on milestones.  
+
+### **2. Spam Detection System**  
+- AI-powered **spam filter** to block duplicate or low-quality submissions.  
+
+### **3. Intuitive Frontend Development**  
+- **Next.js 14 UI** with **Kepler Wallet integration** for authentication and transactions.  
+- Display **projects, funding stats, likes, and staking details**.  
+
+### **4. Backend API & Database**  
+- **API routes** to interact with ADO for funding, staking, and retrieving project data.  
+
+### **5. Testing & Optimization**  
+- **Smart contract testing** for security and correctness.  
+- Optimize UI for a **smooth user experience**.  
+
+### **6. Deployment & Launch**  
+- Deploy **ADO on Andromeda Devnet/Mainnet**.  
+- Launch the platform, enabling **secure crowdfunding, staking, and community-driven project support**. 🚀
+
+I have always been passionate about both **Web3 and Web2 development**, exploring how decentralized technologies can reshape funding and innovation. While working on various blockchain projects, I noticed how **open-source developers struggle to secure funding** despite building impactful solutions. This inspired me to create **AndroFund**, a **simple, community-driven crowdfunding platform** powered by **Andromeda ADOs**. With features like **direct funding, staking, and spam detection**, AndroFund ensures that only **genuine projects** get visibility and support. My goal is to **empower developers** by giving them an easy, transparent way to **connect with funders and grow their ideas into reality**. 🚀
+# 🚀 AndroFund - Fund Andromeda Open Source Projects
+
+AndroFund is a **community-powered grants platform** built on the **Andromeda Protocol**, allowing users to **fund open-source projects** using **ANDR tokens**. This project utilizes Next.js 14 for the frontend and integrates Andromeda blockchain components for seamless funding.
+
+## 🛠️ Features
+- 🌌 **Decentralized Funding** for Andromeda open-source projects.
+- 💰 **Stake and Vote** for projects using ANDR tokens.
+- 🔗 **GitHub Integration** to link projects for funding transparency.
+- 🎨 **Simple & Extendable UI** for easy enhancements.
+
+---
+
+## ⚡ Installation & Setup
+
+### **1️⃣ Clone the Repository**
+```sh
+ git clone https://github.com/lalitcap23/andromeda-aos-project
+ cd andromeda-aos-project
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### **2️⃣ Install Dependencies**
+Ensure you have **Node.js 18+** installed, then run:
+```sh
+npm install  # or yarn install / pnpm install
+```
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+### **3️⃣ Setup Environment Variables**
+Create a `.env.local` file and add:
+```env
+NEXT_PUBLIC_ANDROMEDA_RPC=<Andromeda RPC URL>
+NEXT_PUBLIC_WALLET_ADAPTER=<Wallet Adapter Configuration>
+```
+*(Get the RPC URL from [Andromeda Docs](https://docs.andromedaprotocol.io/))*
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+### **4️⃣ Start the Development Server**
+```sh
+npm run dev  # or yarn dev / pnpm dev
+```
+Open **http://localhost:3000** in your browser.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+---
 
-## Learn More
+## 🔗 Deploying the Project
+### **Vercel Deployment (Recommended)**
+1. Push your changes to GitHub.
+2. Connect the repo to **[Vercel](https://vercel.com/)**.
+3. Set up the environment variables.
+4. Click **Deploy**.
 
-To learn more about Next.js, take a look at the following resources:
+### **Manual Deployment**
+To build and deploy manually:
+```sh
+npm run build
+npm start
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## 🤝 Contributing
+We welcome contributions! To get started:
+1. Fork the repo.
+2. Create a new branch.
+3. Make your changes and commit.
+4. Open a pull request.
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 📜 License
+This project is licensed under the **MIT License**.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+---
 
-## Licensing
+## 🌐 Connect with Us
+- Official Docs: [Andromeda Protocol](https://docs.andromedaprotocol.io/)
+- Twitter: [@AndroFund](https://twitter.com/AndroFund)
+- Discord: [Join our community](https://discord.gg/andromeda)
 
-[Terms and Conditions](https://github.com/andromedaprotocol/andromeda-core/blob/development/LICENSE/LICENSE.md)
+Happy Building! 🚀
+
