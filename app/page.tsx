@@ -117,8 +117,7 @@ const Page = () => {
             <Image src="logo.webp" h="2.5rem" alt="Andromeda Logo" />
             <Divider orientation="vertical" h="24px" mx={4} />
             <Heading as="h1" size="md" letterSpacing="tight">
-              Andromeda Open Source Funding
-            </Heading>
+            AndroFund            </Heading>
           </Flex>
           <Spacer />
           <ConnectWallet />
